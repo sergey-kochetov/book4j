@@ -107,8 +107,12 @@ Vue.component('messages-list', {
 
 var app = new Vue({
   el: '#app',
-  template: '<messages-list :messages="messages" />',
+  template: '<div>' +
+                '<div v-if="!profile">Нужна авторизация <a href="/login">Google</a></div>' +
+                '<messages-list v-else :messages="messages" />' +
+            '</div>',
   data: {
-    messages: []
+    messages: frontendData.messages,
+    profile: frontendData.profile
   }
 });
